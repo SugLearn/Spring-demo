@@ -1,13 +1,14 @@
 package com.example.angularspringdemo.controller;
 
 //import javax.validation.Valid;
+import com.example.angularspringdemo.bean.AuthenticationBean;
 import com.example.angularspringdemo.model.Employee;
 import com.example.angularspringdemo.repository.EmployeeRepository;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.angularspringdemo.bean.AuthenticationBean;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,11 @@ import java.util.Map;
 public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @GetMapping(path = "/basicauth")
+    public AuthenticationBean helloWorldBean() {
+        return new AuthenticationBean("You are authenticated");
+    }
 
     @GetMapping("/getEmployees")
     public List<Employee> getAllEmployees(){
@@ -56,6 +62,10 @@ public class EmployeeController {
         return ResponseEntity.ok().body(employee);
 
     }
+
+
+
+
 
 
 
